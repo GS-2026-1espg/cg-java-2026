@@ -1,0 +1,34 @@
+{
+  "name": "CadeMeuBus API (Java 21 + Maven)",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": "true",
+      "mavenVersion": "3.9.9"
+    }
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/citizentech-api",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "CadeMeuBus API",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "mvn -q dependency:go-offline",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
+        "humao.rest-client",
+        "redhat.vscode-xml"
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.compile.nullAnalysis.mode": "disabled"
+      }
+    }
+  }
+}
