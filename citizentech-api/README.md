@@ -19,7 +19,7 @@
 
 Azor Tartuce (RM 563995), Eduardo Tolentino (RM 562169), Enzo Hort Ramos (RM 561872), Mateus Amaral (RM 562334).
 
-## Como executar (rascunho)
+## Como executar 
 
 Requisitos: JDK 21, Maven 3.9+ e acesso ao Oracle da FIAP.
 
