@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CadeMeuBus - Mobilidade na Zona Leste</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="marca">
+      <h1>CadeMeuBus</h1>
+      <p>Onde reforçar a frota de ônibus na Zona Leste de São Paulo</p>
+    </div>
+    <span id="status-api" class="status" role="status">Verificando API...</span>
+  </header>
+
+  <nav class="abas" aria-label="Seções" id="abas"></nav>
+
+  <main id="conteudo" tabindex="-1"></main>
+
+  <div id="aviso" class="aviso" role="alert" aria-live="assertive" hidden></div>
+
+  <!-- Formulário de cadastro/edição -->
+  <dialog id="dlg-form">
+    <form method="dialog" id="form" novalidate>
+      <h2 id="form-titulo"></h2>
+      <div id="form-campos"></div>
+      <p id="form-erro" class="erro" role="alert" hidden></p>
+      <div class="acoes">
+        <button type="button" class="sec" id="form-cancelar">Cancelar</button>
+        <button type="submit" id="form-salvar">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Trajeto da linha (LINHA_PONTO) -->
+  <dialog id="dlg-trajeto">
+    <h2 id="trajeto-titulo"></h2>
+    <ol id="trajeto-lista" class="trajeto"></ol>
+    <form id="trajeto-form" class="linha-form">
+      <label>Ponto
+        <select id="trajeto-ponto" required></select>
+      </label>
+      <label>Ordem
+        <input id="trajeto-ordem" type="number" min="1" step="1" required>
+      </label>
+      <button type="submit">Adicionar ao trajeto</button>
+    </form>
+    <p id="trajeto-erro" class="erro" role="alert" hidden></p>
+    <div class="acoes"><button type="button" class="sec" id="trajeto-fechar">Fechar</button></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
