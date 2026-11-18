@@ -1,58 +1,73 @@
+-- REGIAO (6) - distritos do extremo leste
+INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Cidade Tiradentes', 'Leste', 14.5, 1450.00, 211000);
+INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Guaianases',        'Leste',  7.5, 1600.00, 268000);
+INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Itaim Paulista',    'Leste', 11.0, 1550.00, 224000);
+INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Sao Mateus',        'Leste',  9.0, 1900.00, 155000);
+INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Lajeado',           'Leste',  8.5, 1500.00, 164000);
+INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Itaquera',          'Leste',  1.0, 2300.00, 204000);
 
--- REGIAO (5)
-INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Cidade Tiradentes', 'Leste', 28.5, 1450.00, 211000);
-INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Guaianases',        'Leste', 24.0, 1600.00, 268000);
-INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Itaim Paulista',    'Leste', 26.0, 1550.00, 224000);
-INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Sao Mateus',        'Leste', 19.0, 1900.00, 155000);
-INSERT INTO REGIAO (nome, zona, distancia_terminal_km, renda_media, populacao) VALUES ('Pinheiros',         'Oeste',  6.5, 9800.00, 140000);
+-- LINHA (7)
+INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('3301-10', 'Term. Cid. Tiradentes - Metro Itaquera',   (SELECT id_regiao FROM REGIAO WHERE nome = 'Cidade Tiradentes'), 18, 14.0);
+INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('3302-10', 'Term. Cid. Tiradentes - Est. Guaianases', (SELECT id_regiao FROM REGIAO WHERE nome = 'Cidade Tiradentes'), 14, 16.0);
+INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('2710-10', 'Itaim Paulista - Metro Itaquera',          (SELECT id_regiao FROM REGIAO WHERE nome = 'Itaim Paulista'),    12, 12.0);
+INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('3005-10', 'Sao Mateus - Terminal Itaquera',           (SELECT id_regiao FROM REGIAO WHERE nome = 'Sao Mateus'),        15,  9.0);
+INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('4112-10', 'Guaianases - Metro Itaquera',              (SELECT id_regiao FROM REGIAO WHERE nome = 'Guaianases'),        16, 11.0);
+INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('3311-10', 'Lajeado - Terminal Sao Mateus',            (SELECT id_regiao FROM REGIAO WHERE nome = 'Lajeado'),           10, 10.0);
+INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('2002-10', 'Itaquera - Artur Alvim',                   (SELECT id_regiao FROM REGIAO WHERE nome = 'Itaquera'),          12,  7.0);
 
--- LINHA (5)
-INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('3001-10', 'Cidade Tiradentes - Terminal Itaquera',     1, 18, 14.0);
-INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('3002-10', 'Guaianases - Terminal Itaquera',            2, 22, 10.0);
-INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('3003-10', 'Itaim Paulista - Terminal Itaquera',        3, 20, 12.0);
-INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('3004-10', 'Sao Mateus - Terminal Sao Mateus',          4, 25,  8.0);
-INSERT INTO LINHA (codigo, nome, id_regiao, frota_atual, intervalo_medio_min) VALUES ('7001-10', 'Pinheiros - Terminal Largo da Batata',      5, 30,  5.0);
+-- PONTO (7)
+INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Terminal Cidade Tiradentes', 'Av. dos Metalurgicos, s/n',  -23.5870, -46.4000, (SELECT id_regiao FROM REGIAO WHERE nome = 'Cidade Tiradentes'));
+INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Estacao Guaianases',         'Praca Cel. Paiva, s/n',      -23.5420, -46.4130, (SELECT id_regiao FROM REGIAO WHERE nome = 'Guaianases'));
+INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Estacao Itaim Paulista',     'Rua Itaim Paulista, s/n',    -23.4930, -46.3900, (SELECT id_regiao FROM REGIAO WHERE nome = 'Itaim Paulista'));
+INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Terminal Sao Mateus',        'Av. Mateo Bei, s/n',         -23.6110, -46.4770, (SELECT id_regiao FROM REGIAO WHERE nome = 'Sao Mateus'));
+INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Praca do Lajeado',           'Estrada do Lajeado Velho, s/n', -23.5360, -46.4050, (SELECT id_regiao FROM REGIAO WHERE nome = 'Lajeado'));
+INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Metro Itaquera',             'Av. Radial Leste, s/n',      -23.5425, -46.4714, (SELECT id_regiao FROM REGIAO WHERE nome = 'Itaquera'));
+INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Estacao Artur Alvim',        'Av. Waldemar Tietz, s/n',    -23.5404, -46.4846, (SELECT id_regiao FROM REGIAO WHERE nome = 'Itaquera'));
 
--- PONTO (6)
-INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Terminal Cidade Tiradentes', 'Av. Cidade Tiradentes, s/n',    -23.5870, -46.4000, 1);
-INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Estacao Guaianases',         'Praca Cel. Paiva, s/n',          -23.5420, -46.4130, 2);
-INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Estacao Itaim Paulista',     'Rua Itaim Paulista, s/n',        -23.4930, -46.3900, 3);
-INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Terminal Sao Mateus',        'Av. Mateo Bei, s/n',             -23.6110, -46.4770, 4);
-INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Terminal Largo da Batata',   'Largo da Batata, s/n',           -23.5670, -46.6930, 5);
-INSERT INTO PONTO (nome, endereco, latitude, longitude, id_regiao) VALUES ('Terminal Itaquera',          'Av. Radial Leste, s/n',          -23.5400, -46.4710, 2);
+-- LINHA_PONTO (14) - trajeto de cada linha, na ordem
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Cidade Tiradentes'), 1);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Metro Itaquera'),             2);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3302-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Cidade Tiradentes'), 1);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3302-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Estacao Guaianases'),         2);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '2710-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Estacao Itaim Paulista'),     1);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '2710-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Metro Itaquera'),             2);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3005-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Sao Mateus'),        1);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3005-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Metro Itaquera'),             2);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '4112-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Estacao Guaianases'),         1);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '4112-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Metro Itaquera'),             2);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3311-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Praca do Lajeado'),           1);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3311-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Sao Mateus'),        2);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '2002-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Metro Itaquera'),             1);
+INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '2002-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Estacao Artur Alvim'),        2);
 
--- LINHA_PONTO (8)
-INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES (1, 1, 1);
-INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES (1, 6, 2);
-INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES (2, 2, 1);
-INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES (2, 6, 2);
-INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES (3, 3, 1);
-INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES (3, 6, 2);
-INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES (4, 4, 1);
-INSERT INTO LINHA_PONTO (id_linha, id_ponto, ordem) VALUES (5, 5, 1);
+-- MEDICAO (10) - medias no pico iguais as da tela 3 do prototipo (Agile)
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Cidade Tiradentes'), TO_DATE('2026-11-03 06:30','YYYY-MM-DD HH24:MI'), 'PICO_AM',   116, 98, 14.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Cidade Tiradentes'), TO_DATE('2026-11-03 18:15','YYYY-MM-DD HH24:MI'), 'PICO_PM',   120, 96, 14.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3302-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Cidade Tiradentes'), TO_DATE('2026-11-03 06:40','YYYY-MM-DD HH24:MI'), 'PICO_AM',   107, 94, 16.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '2710-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Estacao Itaim Paulista'),     TO_DATE('2026-11-04 06:20','YYYY-MM-DD HH24:MI'), 'PICO_AM',   101, 91, 12.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3005-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Sao Mateus'),        TO_DATE('2026-11-04 07:00','YYYY-MM-DD HH24:MI'), 'PICO_AM',    89, 86,  9.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '4112-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Estacao Guaianases'),         TO_DATE('2026-11-04 06:45','YYYY-MM-DD HH24:MI'), 'PICO_AM',    82, 83, 11.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3311-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Praca do Lajeado'),           TO_DATE('2026-11-05 06:30','YYYY-MM-DD HH24:MI'), 'PICO_AM',    75, 78, 10.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '2002-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Metro Itaquera'),             TO_DATE('2026-11-05 07:10','YYYY-MM-DD HH24:MI'), 'PICO_AM',    38, 52,  7.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Terminal Cidade Tiradentes'), TO_DATE('2026-11-05 14:00','YYYY-MM-DD HH24:MI'), 'ENTREPICO',  70, 55, 15.0);
+INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '2002-10'), (SELECT id_ponto FROM PONTO WHERE nome = 'Metro Itaquera'),             TO_DATE('2026-11-05 22:00','YYYY-MM-DD HH24:MI'), 'NOITE',      30, 25, 12.0);
 
--- MEDICAO (8)
-INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES (1, 1, TO_DATE('2026-11-03 06:30','YYYY-MM-DD HH24:MI'), 'PICO_AM',   118, 98, 16.0);
-INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES (1, 1, TO_DATE('2026-11-03 18:15','YYYY-MM-DD HH24:MI'), 'PICO_PM',   125, 100, 18.0);
-INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES (2, 2, TO_DATE('2026-11-03 06:45','YYYY-MM-DD HH24:MI'), 'PICO_AM',    95, 92, 11.0);
-INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES (2, 2, TO_DATE('2026-11-03 14:00','YYYY-MM-DD HH24:MI'), 'ENTREPICO',  62, 55, 10.0);
-INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES (3, 3, TO_DATE('2026-11-04 06:20','YYYY-MM-DD HH24:MI'), 'PICO_AM',   104, 95, 13.0);
-INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES (4, 4, TO_DATE('2026-11-04 07:00','YYYY-MM-DD HH24:MI'), 'PICO_AM',    70, 80,  8.0);
-INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES (5, 5, TO_DATE('2026-11-04 07:30','YYYY-MM-DD HH24:MI'), 'PICO_AM',    35, 60,  5.0);
-INSERT INTO MEDICAO (id_linha, id_ponto, dt_medicao, faixa_horario, tempo_viagem_min, lotacao_pct, intervalo_min) VALUES (5, 5, TO_DATE('2026-11-04 22:00','YYYY-MM-DD HH24:MI'), 'NOITE',      28, 25,  9.0);
+-- RELATO (7) - anonimos, sem dado pessoal. Itaquera fica sem relato (aparece com NULL na consulta 3)
+INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES ((SELECT id_regiao FROM REGIAO WHERE nome = 'Cidade Tiradentes'), (SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), TO_DATE('2026-11-05','YYYY-MM-DD'), 'LOTACAO',    'Passaram dois onibus cheios sem parar no ponto no pico da manha.', 40);
+INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES ((SELECT id_regiao FROM REGIAO WHERE nome = 'Cidade Tiradentes'), (SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), TO_DATE('2026-11-06','YYYY-MM-DD'), 'FREQUENCIA', 'Espera de mais de 25 minutos no ponto de madrugada.',              25);
+INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES ((SELECT id_regiao FROM REGIAO WHERE nome = 'Cidade Tiradentes'), (SELECT id_linha FROM LINHA WHERE codigo = '3302-10'), TO_DATE('2026-11-06','YYYY-MM-DD'), 'ATRASO',     'Atraso constante na saida do terminal.',                          20);
+INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES ((SELECT id_regiao FROM REGIAO WHERE nome = 'Itaim Paulista'),    (SELECT id_linha FROM LINHA WHERE codigo = '2710-10'), TO_DATE('2026-11-07','YYYY-MM-DD'), 'LOTACAO',    'Fila grande para embarcar na baldeacao em Itaquera.',             35);
+INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES ((SELECT id_regiao FROM REGIAO WHERE nome = 'Guaianases'),        (SELECT id_linha FROM LINHA WHERE codigo = '4112-10'), TO_DATE('2026-11-07','YYYY-MM-DD'), 'ATRASO',     'Onibus saiu 15 minutos depois do horario previsto.',              15);
+INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES ((SELECT id_regiao FROM REGIAO WHERE nome = 'Sao Mateus'),        (SELECT id_linha FROM LINHA WHERE codigo = '3005-10'), TO_DATE('2026-11-08','YYYY-MM-DD'), 'LOTACAO',    'Onibus lotado ja na saida do terminal.',                          10);
+INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES ((SELECT id_regiao FROM REGIAO WHERE nome = 'Lajeado'),           NULL,                                                  TO_DATE('2026-11-08','YYYY-MM-DD'), 'SEGURANCA',  'Ponto com pouca iluminacao a noite.',                             NULL);
 
--- RELATO (5) - dados simulados, sem informacao pessoal
-INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES (1, 1, TO_DATE('2026-11-05','YYYY-MM-DD'), 'LOTACAO',    'Onibus passa lotado e nao para no ponto no horario de pico.', 40);
-INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES (1, 1, TO_DATE('2026-11-06','YYYY-MM-DD'), 'FREQUENCIA', 'Espera de mais de 25 minutos no ponto pela manha.',          25);
-INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES (2, 2, TO_DATE('2026-11-06','YYYY-MM-DD'), 'ATRASO',     'Atraso constante na saida do terminal.',                     20);
-INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES (3, 3, TO_DATE('2026-11-07','YYYY-MM-DD'), 'LOTACAO',    'Baldeacao em Itaquera com fila grande para embarcar.',       35);
-INSERT INTO RELATO (id_regiao, id_linha, dt_relato, categoria, descricao, tempo_perdido_min) VALUES (3, NULL, TO_DATE('2026-11-08','YYYY-MM-DD'), 'SEGURANCA', 'Ponto com pouca iluminacao a noite.',                       NULL);
-
--- ALERTA (5)
-INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES (1, 1, TO_DATE('2026-11-03','YYYY-MM-DD'), 'CRITICO', 'Tempo de viagem acima de 90 min e lotacao proxima de 100% no pico da manha.', 'ABERTO');
-INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES (1, 2, TO_DATE('2026-11-03','YYYY-MM-DD'), 'CRITICO', 'Tempo de viagem acima de 120 min no pico da tarde.',                         'EM_ANALISE');
-INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES (2, 3, TO_DATE('2026-11-03','YYYY-MM-DD'), 'ALTO',    'Viagem acima de 90 min no pico da manha.',                                  'ABERTO');
-INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES (3, 5, TO_DATE('2026-11-04','YYYY-MM-DD'), 'ALTO',    'Lotacao de 95% e intervalo de 13 min no pico da manha.',                    'ABERTO');
-INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES (4, NULL, TO_DATE('2026-11-05','YYYY-MM-DD'), 'BAIXO',  'Monitoramento preventivo: lotacao em 80% no pico.',                         'RESOLVIDO');
+-- ALERTA (7) - id_medicao buscado pela linha + data/hora da medicao
+INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), (SELECT m.id_medicao FROM MEDICAO m JOIN LINHA l ON l.id_linha = m.id_linha WHERE l.codigo = '3301-10' AND m.dt_medicao = TO_DATE('2026-11-03 06:30','YYYY-MM-DD HH24:MI')), TO_DATE('2026-11-03','YYYY-MM-DD'), 'CRITICO', 'Viagem acima de 90 min e lotacao de 98% no pico da manha.', 'ABERTO');
+INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3301-10'), (SELECT m.id_medicao FROM MEDICAO m JOIN LINHA l ON l.id_linha = m.id_linha WHERE l.codigo = '3301-10' AND m.dt_medicao = TO_DATE('2026-11-03 18:15','YYYY-MM-DD HH24:MI')), TO_DATE('2026-11-03','YYYY-MM-DD'), 'CRITICO', 'Viagem de 120 min no pico da tarde.', 'EM_ANALISE');
+INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3302-10'), (SELECT m.id_medicao FROM MEDICAO m JOIN LINHA l ON l.id_linha = m.id_linha WHERE l.codigo = '3302-10' AND m.dt_medicao = TO_DATE('2026-11-03 06:40','YYYY-MM-DD HH24:MI')), TO_DATE('2026-11-03','YYYY-MM-DD'), 'CRITICO', 'Viagem acima de 90 min e intervalo de 16 min no pico.', 'ABERTO');
+INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '2710-10'), (SELECT m.id_medicao FROM MEDICAO m JOIN LINHA l ON l.id_linha = m.id_linha WHERE l.codigo = '2710-10' AND m.dt_medicao = TO_DATE('2026-11-04 06:20','YYYY-MM-DD HH24:MI')), TO_DATE('2026-11-04','YYYY-MM-DD'), 'CRITICO', 'Viagem acima de 90 min e lotacao de 91% no pico.', 'ABERTO');
+INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3005-10'), (SELECT m.id_medicao FROM MEDICAO m JOIN LINHA l ON l.id_linha = m.id_linha WHERE l.codigo = '3005-10' AND m.dt_medicao = TO_DATE('2026-11-04 07:00','YYYY-MM-DD HH24:MI')), TO_DATE('2026-11-04','YYYY-MM-DD'), 'ALTO',    'Lotacao de 86% no pico da manha.', 'ABERTO');
+INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '4112-10'), (SELECT m.id_medicao FROM MEDICAO m JOIN LINHA l ON l.id_linha = m.id_linha WHERE l.codigo = '4112-10' AND m.dt_medicao = TO_DATE('2026-11-04 06:45','YYYY-MM-DD HH24:MI')), TO_DATE('2026-11-04','YYYY-MM-DD'), 'ALTO',    'Lotacao de 83% e intervalo de 11 min no pico.', 'ABERTO');
+INSERT INTO ALERTA (id_linha, id_medicao, dt_alerta, nivel, mensagem, status) VALUES ((SELECT id_linha FROM LINHA WHERE codigo = '3311-10'), NULL, TO_DATE('2026-11-05','YYYY-MM-DD'), 'MEDIO', 'Monitoramento preventivo: lotacao em 78% no pico.', 'RESOLVIDO');
 
 COMMIT;

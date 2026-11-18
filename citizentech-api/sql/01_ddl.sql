@@ -1,11 +1,8 @@
 -- =====================================================================
--- CitizenTech - Database Design (GS 2026.2 - FIAP)
--- 01_ddl.sql : criacao das tabelas e constraints (Oracle 12c+)
--- Executar no SQL Developer como SCRIPT (F5 / Run Script), nao como
--- instrucao unica (Ctrl+Enter).
+-- Conecta Periferia (CitizenTech) - Database Design (GS 2026.2 - FIAP)
 -- =====================================================================
 
--- Limpeza: remove as tabelas se ja existirem (ignora erro se nao existirem)
+-- Limpeza de tabelas existentes (caso existam)
 BEGIN
     FOR t IN (SELECT column_value AS nome
               FROM TABLE(sys.odcivarchar2list('ALERTA','RELATO','MEDICAO','LINHA_PONTO','PONTO','LINHA','REGIAO')))
@@ -94,7 +91,7 @@ CREATE TABLE MEDICAO (
 CREATE TABLE RELATO (
     id_relato          NUMBER GENERATED ALWAYS AS IDENTITY,
     id_regiao          NUMBER        NOT NULL,
-    id_linha           NUMBER,                      -- opcional: relato pode ser geral da regiao
+    id_linha           NUMBER,                      
     dt_relato          DATE          NOT NULL,
     categoria          VARCHAR2(20)  NOT NULL,
     descricao          VARCHAR2(300) NOT NULL,
@@ -109,7 +106,7 @@ CREATE TABLE RELATO (
 CREATE TABLE ALERTA (
     id_alerta   NUMBER GENERATED ALWAYS AS IDENTITY,
     id_linha    NUMBER        NOT NULL,
-    id_medicao  NUMBER,                             
+    id_medicao  NUMBER,                              
     dt_alerta   DATE          NOT NULL,
     nivel       VARCHAR2(10)  NOT NULL,
     mensagem    VARCHAR2(200) NOT NULL,
@@ -128,5 +125,5 @@ CREATE INDEX ix_med_linha     ON MEDICAO (id_linha);
 CREATE INDEX ix_rel_regiao    ON RELATO (id_regiao);
 CREATE INDEX ix_ale_linha     ON ALERTA (id_linha);
 
--- Exemplo de ALTER TABLE: acrescenta restricao depois da criacao
+
 ALTER TABLE LINHA ADD CONSTRAINT ck_linha_codigo_len CHECK (LENGTH(codigo) >= 4);
