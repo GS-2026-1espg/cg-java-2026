@@ -1,11 +1,11 @@
-# CadeMeuBus - API REST
+# Conecta Periferia (CitizenTech) - API REST
 
 ## Ficha da CitizenTech
 
 | Campo | Conteudo |
 |---|---|
-| Nome da CitizenTech | CadeMeuBus |
-| Cidade e bairro | Sao Paulo, extremo da Zona Leste (ex.: Cidade Tiradentes) |
+| Nome da CitizenTech | Conecta Periferia |
+| Cidade e bairro | Sao Paulo, extremo da Zona Leste (Cidade Tiradentes, Guaianases, Itaim Paulista, Sao Mateus, Lajeado e Itaquera) |
 | Cidadao beneficiado | Trabalhador(a) da periferia que gasta mais de 2h por dia no onibus |
 | Problema | Moradores de regioes vulneraveis perdem horas em linhas lotadas e com pouca frequencia, sem criterio claro de onde reforcar a frota |
 | Como funciona | Identifica regioes, linhas e horarios com pior deslocamento e recomenda a redistribuicao da frota |
@@ -36,3 +36,13 @@ mvn spring-boot:run
 ```
 
 Teste: `GET http://localhost:8080/health`
+
+## Banco de dados
+
+Scripts Oracle em `sql/`, para rodar no SQL Developer como script (F5), nesta ordem:
+
+| Arquivo | Conteudo |
+|---|---|
+| `01_ddl.sql` | Cria as tabelas REGIAO, LINHA, PONTO, LINHA_PONTO, MEDICAO, RELATO e ALERTA (apaga as existentes) |
+| `02_dml.sql` | Dados de exemplo: 6 regioes, 7 linhas, 7 pontos, 10 medicoes, 7 relatos e 7 alertas |
+| `03_ddl.sql` | Consultas SQL do trabalho |
